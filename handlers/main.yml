@@ -1,0 +1,8 @@
+---
+# handlers file for ansible-role-dyfi
+
+- name: restart dyfi
+  systemd:
+    state: restarted
+    daemon-reload: yes
+    name: dyfi-update

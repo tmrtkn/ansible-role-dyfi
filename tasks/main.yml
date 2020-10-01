@@ -1,0 +1,43 @@
+---
+# tasks file for ansible-role-dyfi
+
+# cp dyfi-update.pl /usr/local/bin/
+- name: Copy dyfi-update.pl to /usr/local/bin
+  become: yes
+  copy:
+    src: dyfi-update.pl
+    dest: /usr/local/bin/dyfi-update.pl
+    owner: root
+    group: root
+    mode: '0700'
+  notify: restart dyfi
+    
+# cp template dyfi-update.conf /usr/local/etc
+- name: Copy dyfi-update.conf to /usr/local/etc
+  become: yes
+  template:
+    src: dyfi-update.conf.j2
+    dest: /usr/local/etc/dyfi-update.conf
+    owner: root
+    group: root
+    mode: '0600'
+  notify: restart dyfi 
+
+# cp dyfi-update.service /etc/systemd/system
+- name: Copy dyfi-update.service to /etc/systemd/system
+  become: yes
+  copy:
+    src: dyfi-update.service
+    dest: /etc/systemd/system/dyfi-update.service
+    owner: root
+    group: root
+    mode: '0644'
+  notify: restart dyfi
+
+# start dyfi
+- name: start dyfi and make it started on boot too
+  systemd:
+    state: started
+    enabled: yes
+    name: dyfi-update
+

@@ -1,0 +1,10 @@
+[Unit]
+Description=dy.fi update daemon
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/dyfi-update.pl -f /usr/local/etc/dyfi-update.conf
+
+[Install]
+WantedBy=multi-user.target
