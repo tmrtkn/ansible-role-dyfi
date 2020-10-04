@@ -1,0 +1,7 @@
+galaxy_info:
+  author: Toni Martikainen
+  description: Installs client for Finnish dy.fi DDNS service
+  license: BSD
+  min_ansible_version: 2.2
+  galaxy_tags: []
+dependencies: []
